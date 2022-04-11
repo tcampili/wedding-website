@@ -147,7 +147,7 @@ $(document).ready(function () {
 
     for (var i = 0; i < share_bar.length; i++) {
         var html = '<iframe allowtransparency="true" frameborder="0" scrolling="no"' +
-            'src="https://platform.twitter.com/widgets/tweet_button.html?url=' + encodeURIComponent(window.location) + '&amp;text=' + encodeURIComponent(document.title) + '&amp;via=ramswarooppatra&amp;hashtags=ramandantara&amp;count=horizontal"' +
+            'src="https://platform.twitter.com/widgets/tweet_button.html?url=' + encodeURIComponent(window.location) + '&amp;text=' + encodeURIComponent(document.title) + '&amp;hashtags=TizianoEValeria&amp;count=horizontal"' +
             'style="width:105px; height:21px;">' +
             '</iframe>' +
 
@@ -241,17 +241,49 @@ $(document).ready(function () {
 
 // Google map
 function initMap() {
-    var location = {lat: 22.5932759, lng: 88.27027720000001};
+    var bounds = new google.maps.LatLngBounds();
     var map = new google.maps.Map(document.getElementById('map-canvas'), {
-        zoom: 15,
-        center: location,
-        scrollwheel: false
+        center: {lat: 0, lng: 0},
+        gestureHandling: 'cooperative'
     });
 
-    var marker = new google.maps.Marker({
-        position: location,
+    var villa = {lat: 41.59326195626104, lng: 13.290454553723864};
+    bounds.extend(villa)
+    var marker1 = new google.maps.Marker({
+        position: villa,
         map: map
     });
+    var infowindow = new google.maps.InfoWindow();
+    infowindow.setContent('RICEVIMENTO');
+    infowindow.open(map, marker1);
+    google.maps.event.addListener(marker1, 'click', (function (marker) {
+        return function () {
+            infowindow.setContent('RICEVIMENTO');
+            infowindow.open(map, marker);
+        }
+    })(marker1));
+
+    var chiesa = {lat: 41.691513674259504, lng: 13.346015082819044};
+    bounds.extend(chiesa)
+    var marker2 = new google.maps.Marker({
+        position: chiesa,
+        map: map
+    });
+    var infowindow2 = new google.maps.InfoWindow();
+    infowindow2.setContent('CERIMONIA');
+    infowindow2.open(map, marker2);
+    google.maps.event.addListener(marker2, 'click', (function (marker) {
+        return function () {
+            infowindow2.setContent('CERIMONIA');
+            infowindow2.open(map, marker);
+        }
+    })(marker2));
+
+    // Automatically center the map fitting all markers on the screen
+    google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+        this.setZoom(map.getZoom()-1);
+    });
+    map.fitBounds(bounds);
 }
 
 function initBBSRMap() {
