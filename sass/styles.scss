@@ -400,7 +400,6 @@ Intro
 }
 
 #intro {
-  padding-top: 40px;
   img {
     width: 100%;
     height: auto;
@@ -788,7 +787,7 @@ Google map
 RSVP form
 ========================================================================== */
 .rsvp {
-  padding-bottom: 140px;
+  padding-bottom: 40px;
   .rsvp-form {
     .rsvp-btn {
       padding: 15px 0;
@@ -898,4 +897,14 @@ body.modal-open {
 }
 .modal-body {
   padding:25px;
+}
+
+/* ==========================================================================
+Bootstrap override
+========================================================================== */
+.black-line {
+  width: 30px;
+  height: 8px;
+  display: inline-block;
+  border-top: solid 1px #000000;
 }

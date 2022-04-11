@@ -157,7 +157,7 @@ $(document).ready(function () {
 
         // '<iframe src="https://plusone.google.com/_/+1/fastbutton?bsv&amp;size=medium&amp;url=' + encodeURIComponent(window.location) + '" allowtransparency="true" frameborder="0" scrolling="no" title="+1" style="width:105px; height:21px;"></iframe>';
 
-        share_bar[i].innerHTML = html;
+        //share_bar[i].innerHTML = html;
         share_bar[i].style.display = 'inline-block';
     }
 
@@ -241,6 +241,7 @@ $(document).ready(function () {
 
 // Google map
 function initMap() {
+    var iconBase = 'https://maps.google.com/mapfiles/kml/pal2/';
     var bounds = new google.maps.LatLngBounds();
     var map = new google.maps.Map(document.getElementById('map-canvas'), {
         center: {lat: 0, lng: 0},
@@ -251,7 +252,8 @@ function initMap() {
     bounds.extend(villa)
     var marker1 = new google.maps.Marker({
         position: villa,
-        map: map
+        map: map,
+        //icon: iconBase + 'icon34.png'
     });
     var infowindow = new google.maps.InfoWindow();
     infowindow.setContent('RICEVIMENTO');
@@ -267,7 +269,8 @@ function initMap() {
     bounds.extend(chiesa)
     var marker2 = new google.maps.Marker({
         position: chiesa,
-        map: map
+        map: map,
+        //icon: iconBase + 'icon11.png'
     });
     var infowindow2 = new google.maps.InfoWindow();
     infowindow2.setContent('CERIMONIA');
